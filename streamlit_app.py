@@ -20,7 +20,7 @@ def no_hash(obj):
 @st.cache_resource(hash_funcs={Dataset: no_hash})
 def download_data(url):
     anser = requests.get(url, allow_redirects=True)
-    print(anser.status_code)
+    st.write(anser.status_code)
     r = requests.get(url, allow_redirects=True).content
     return Dataset("name", memory=r)
 
