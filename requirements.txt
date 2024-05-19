@@ -1,0 +1,10 @@
+netCDF4
+numpy
+matplotlib
+basemap
+ipywidgets
+datetime
+pytest-warnings
+requests
+ipympl
+streamlit
