@@ -48,9 +48,9 @@ data['gravity_bouguer'] = data['gravity_disturbance'] - data['bouguer_plate_corr
 
 # Словарь переводов
 field_labels = {
-    'gravity_disturbance': 'Возмущение гравитации',
-    'gravity_bouguer': 'Бугеррская аномалия',
-    'topography_ell': 'Топография (эллипсоид)'
+    'gravity_disturbance': 'Потенциал силы тяжести',
+    'gravity_bouguer': 'Редукция Бурге',
+    'topography_ell': 'Топография'
 }
 
 # Класс для выбора профиля
