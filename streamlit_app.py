@@ -5,16 +5,23 @@ import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib.patches import Polygon
 import os
+from nc_calculate import nc_app  # Импорт функции nc_app из nc_calculate
 
 def main():
     st.title("ВКР Лебедев Е.Д. ПИабпд-1м")
 
-    app_mode = st.sidebar.selectbox("Выберите приложение", ["Визуализация данных GRACE", "Расчет гравитационного потенциала 2D (Talwani)"])
+    app_mode = st.sidebar.selectbox("Выберите приложение", [
+        "Визуализация данных GRACE", 
+        "Расчет гравитационного потенциала 2D (Talwani)", 
+        "Анализ данных NetCDF"
+    ])
 
     if app_mode == "Визуализация данных GRACE":
         grace_app()
     elif app_mode == "Расчет гравитационного потенциала 2D (Talwani)":
         gravity_app()
+    elif app_mode == "Анализ данных NetCDF":
+        nc_app()
 
 def grace_app():
     images_dir = "GRACE"
@@ -39,11 +46,8 @@ def gravity_app():
     При расчете модели используется контурный интеграл. 
     Гравитационная аномалия определяется путем вычисления линейного интеграла вдоль каждого ребра многоугольника (тела). 
     Результирующая гравитационная аномалия прямо пропорциональна сумме линейных интегралов и разнице плотности между телом и окружающей породой.
-             
     </div>
     """, unsafe_allow_html=True)
-
-
 
     density_contrast_default = 500.0
     x_zero = 50
@@ -66,9 +70,9 @@ def gravity_app():
     y = []
     for i in range(4):
         with col1 if i < 2 else col2:
-            x.append(st.number_input(f'Point {i+1} X', min_value=0, max_value=600, value=default_x[i]))
+            x.append(st.number_input(f'Точка {i+1} X', min_value=0, max_value=600, value=default_x[i]))
         with col3 if i < 2 else col4:
-            y.append(st.number_input(f'Point {i+1} Y', min_value=0, max_value=200, value=default_y[i]))
+            y.append(st.number_input(f'Точка {i+1} Y', min_value=0, max_value=200, value=default_y[i]))
 
     polygon = Polygon(np.column_stack((x, y)), closed=True, fill=None, edgecolor='r')
     ax.add_patch(polygon)
@@ -76,9 +80,9 @@ def gravity_app():
     ax.set_ylim(0, 480)
     ax.axhline(y=depth_zero, color='k')
     ax.axvline(x=x_zero, color='k')
-    ax.set_xlabel('Distance (km)')
-    ax.set_ylabel('Depth (km)')
-    ax.set_title('2D Polygon')
+    ax.set_xlabel('Расстояние (км)')
+    ax.set_ylabel('Глубина (км)')
+    ax.set_title('2D Полигон')
 
     gravity_values = []
     step_size = min(25, int((max(x) - x_zero) / 10))  
@@ -99,9 +103,9 @@ def gravity_app():
     ax.plot(gravity_x, gravity_y, 'ro')
     ax.axhline(y=mgal_zero, color='k')
     ax.axvline(x=x_zero, color='k')
-    ax.set_xlabel('Distance (km)')
-    ax.set_ylabel('Gravity (mGal)')
-    ax.set_title('Gravity Anomaly')
+    ax.set_xlabel('Расстояние (км)')
+    ax.set_ylabel('Гравитация (mGal)')
+    ax.set_title('Гравитационная Аномалия')
 
     st.pyplot(fig)
 

@@ -8,3 +8,7 @@ pytest-warnings
 requests
 ipympl
 streamlit
+cmocean
+cartopy
+xarray
+boule
