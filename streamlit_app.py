@@ -39,7 +39,7 @@ def grace_app():
     </div>
     """, unsafe_allow_html=True)
     
-        st.write("""
+    st.write("""
     <div style="text-align: justify; margin-bottom: 20px;">
     Ниже приведены данные, полученные путем построения моделей на основе месячных данных с 2002 по 2024 года.
     
