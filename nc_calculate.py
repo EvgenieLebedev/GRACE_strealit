@@ -102,7 +102,7 @@ class ProfileSelector:
         dim_comp = set(self.data.dims).difference({dimension}).pop()
         x = self.data[dimension]
         xlim = [x.min(), x.max()]
-        profile = self.data.loc[{dim_comp: location}]
+        profile = self.data.sel({dim_comp: location}, method='nearest')  # Using 'nearest' method here
 
         for field in self.fields:
             self._data_lines[field].set_data(x, profile[field])
