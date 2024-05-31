@@ -35,5 +35,5 @@ def talwani(x1, x2, z1, z2, density):
     term2 = np.arctan2(z2, x2) - np.arctan2(z1, x1)
     zz = factor * (term1 - alpha * term2)
     grav = 2 * G * density * zz * 1e5
-    return -grav  # возвращение в милигаллах
+    return -grav  
 
