@@ -140,6 +140,15 @@ class ProfileSelector:
 def nc_app():
     st.title("Локальное гравитационное поле на основе данных гравитационной модели EIGEN-6c4, Глобальная ЦМР ETOPO1")
     
+    st.write("""
+    <div style="text-align: justify; margin-bottom: 20px;">
+    Исходные данные о гравитации и топографии генерируются из моделей сферических гармоник с использованием [ICGEM Calculation Service](http://icgem.gfz-potsdam.de). 
+    Данные распространяются в текстовых файлах, а высоты определяются относительно геоида (ортометрические высоты). 
+    Необходимо преобразовать наблюдаемые высоты и топографию в геометрические высоты (относительно эллипсоида), используя высоты геоида, также загруженные из ICGEM. 
+    Эти данные будут сохранены в файлах формата [netCDF](https://www.unidata.ucar.edu/software/netcdf/) для удобной загрузки с помощью [xarray](http://xarray.pydata.org/).
+    </div>
+    """, unsafe_allow_html=True)
+    
     plot_hawaii_data(data, 'h_over_ellipsoid', cmap=cmocean.cm.delta)
     
     st.sidebar.title("Насыщенность цветовой шкалы")
