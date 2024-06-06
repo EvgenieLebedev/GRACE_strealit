@@ -12,15 +12,16 @@ def main():
 
     app_mode = st.sidebar.selectbox("Выберите приложение", [
         "Визуализация данных GRACE", 
-        "Расчет гравитационного потенциала 2D (Talwani)", 
-        "Анализ данных NetCDF"
+        "Редукция бурге",
+        "Расчет гравитационного потенциала 2D (Talwani)" 
+        
     ])
 
     if app_mode == "Визуализация данных GRACE":
         grace_app()
     elif app_mode == "Расчет гравитационного потенциала 2D (Talwani)":
         gravity_app()
-    elif app_mode == "Анализ данных NetCDF":
+    elif app_mode == "Редукция бурге":
         nc_app()
 
 def grace_app():
