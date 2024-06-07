@@ -6,6 +6,7 @@ import numpy as np
 from matplotlib.patches import Polygon
 import os
 from nc_calculate import nc_app  # Импорт функции nc_app из nc_calculate
+from great_britain import great_britain_app 
 
 def main():
     st.title("ВКР Лебедев Е.Д. ПИабпд-1м")
@@ -13,8 +14,8 @@ def main():
     app_mode = st.sidebar.selectbox("Выберите приложение", [
         "Визуализация данных GRACE", 
         "Редукция бурге",
-        "Расчет гравитационного потенциала 2D (Talwani)" 
-        
+        "Расчет гравитационного потенциала 2D (Talwani)",
+        "Анализ данных Великобритании"
     ])
 
     if app_mode == "Визуализация данных GRACE":
@@ -23,6 +24,8 @@ def main():
         gravity_app()
     elif app_mode == "Редукция бурге":
         nc_app()
+    elif app_mode == "Анализ данных Великобритании":
+        great_britain_app()
 
 def grace_app():
     images_dir = "GRACE"
@@ -190,6 +193,7 @@ def gravity_app():
         return -grav       
     ```
     """, unsafe_allow_html=True)
+
 
 
 if __name__ == "__main__":
